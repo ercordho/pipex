@@ -5,36 +5,60 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/21 16:06:21 by ercordho          #+#    #+#              #
-#    Updated: 2021/09/23 12:59:27 by ercordho         ###   ########.fr        #
+#    Created: 2021/11/08 18:47:17 by ercordho          #+#    #+#              #
+#    Updated: 2021/11/08 22:53:00 by ercordho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+AR		=	pipex.a
 NAME	=	pipex
 CC		=	gcc
-COMPILE	=	-L libft -lft
 CFLAGS	=	-Wall -Wextra -Werror
-SRC		=	main.c
-OBJ		=	$(SRC:.c=.o)
+RM		=	rm -f
+SRCS	=	srcs/ascii/ft_ischarset.c \
+			\
+			srcs/error/error_child_dup2.c \
+			srcs/error/error_child_fork.c \
+			srcs/error/error_init_cmd.c \
+			srcs/error/error_init_paths.c \
+			srcs/error/error_malloc_paths.c \
+			srcs/error/error_open_file.c \
+			\
+			srcs/init/init_pipex.c \
+			\
+			srcs/memory/ft_memdel.c \
+			srcs/memory/ft_memdels.c \
+			srcs/memory/ft_memset.c \
+			\
+			srcs/string/countwords.c \
+			srcs/string/ft_split.c \
+			srcs/string/ft_strdup.c \
+			srcs/string/ft_strjoinsep.c \
+			srcs/string/ft_strlen.c \
+			srcs/string/ft_strncmp.c \
+			srcs/string/ft_strrchr.c \
+			\
+			srcs/write/ft_putchar.c \
+			srcs/write/ft_putendl.c \
+			srcs/write/ft_putstr.c \
+			\
+			srcs/pipex.c \
+			\
+			main.c
+INC		=	inc
+OBJS	=	$(SRCS:.c=.o)
 
-OS := $(shell uname -s)
-ifeq ($(OS),Darwin)
-#	CFLAGS		+=	-D MACOS -fsanitize=address
-endif
-ifeq ($(OS),Linux)
-endif
-
-all:		libft $(NAME)
-$(NAME):	$(OBJ)
-			@$(CC) $^ $(COMPILE) -o $@
-libft:
-			@make -C libft
-.c.o:		$(SRC)
-			@$(CC) $(CFLAGS) -c $<
+$(AR):		$(OBJS)
+			@ar src $@ $^
+			@$(CC) $(AR) -o $(NAME) && $(RM) $(OBJS) $(AR)
+$(NAME):	$(OBJS) $(AR)
+all:		$(NAME)
+.c.o:		$(SRCS) $(AR)
+			@$(CC) $(CFLAGS) -I $(INC) -c $< -o $(<:.c=.o)
 clean:
-			@rm -f $(OBJ)
+			@$(RM) $(OBJS) $(AR)
 fclean:		clean
-			@rm -f $(NAME)
-			@make fclean -C libft
+			@$(RM) $(NAME)
 re:			fclean all
-.PHONY:		all libft clean fclean re
+
+.PHONY:		all clean fclean re pipex

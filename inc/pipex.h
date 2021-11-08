@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:07:56 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/08 22:48:15 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/09 00:03:26 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void		error_open_file(t_cmd *cmd, int file_index);
 **	INIT
 */
 void		init_pipex(t_cmd *cmd, const char **envp, const char **argv);
-
 
 /*
 **	MEMORY

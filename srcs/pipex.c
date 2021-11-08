@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:36:37 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/08 23:33:47 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/09 00:11:32 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	child_process_1(t_cmd *cmd, const char **argv, const char **envp)
 {
+	int	(*f)(const char *, char *const *, char *const *);
+
 	close(cmd->end[0]);
 	if (dup2(cmd->end[1], STDOUT_FILENO) < 0)
 		error_child_dup2(cmd, 11);
@@ -23,11 +25,14 @@ static void	child_process_1(t_cmd *cmd, const char **argv, const char **envp)
 		error_open_file(cmd, 1);
 	if (dup2(cmd->infile, STDIN_FILENO) < 0)
 		error_child_dup2(cmd, 12);
-	execve(cmd->cmds_paths[0], (char *const *)cmd->cmds[0], (char *const *)envp);
+	f = &execve;
+	f(cmd->cmds_paths[0], (char *const *)cmd->cmds[0], (char *const *)envp);
 }
 
 static void	child_process_2(t_cmd *cmd, const char **argv, const char **envp)
 {
+	int	(*f)(const char *, char *const *, char *const *);
+
 	cmd->outfile = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (cmd->outfile == -1)
 		error_open_file(cmd, 2);
@@ -37,7 +42,8 @@ static void	child_process_2(t_cmd *cmd, const char **argv, const char **envp)
 	close(cmd->end[0]);
 	if (dup2(cmd->outfile, STDOUT_FILENO) < 0)
 		error_child_dup2(cmd, 22);
-	execve(cmd->cmds_paths[1], (char *const *)cmd->cmds[1], (char *const *)envp);
+	f = &execve;
+	f(cmd->cmds_paths[1], (char *const *)cmd->cmds[1], (char *const *)envp);
 }
 
 void	pipex(t_cmd *cmd, const char **envp, const char **argv)

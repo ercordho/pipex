@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:06:10 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/08 19:17:32 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/08 23:58:45 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@ int	main(int argc, const char **argv, const char **envp)
 	{
 		if (pipe(cmd.end) == -1)
 		{
+			ft_putstr(RED);
 			ft_putendl("ERROR\nPipe failled.");
+			ft_putstr(NRML);
 			return (EXIT_FAILURE);
 		}
 		if (access(argv[1], F_OK) != 0)
 		{
+			ft_putstr(RED);
 			ft_putendl("ERROR\nFile 1 not found.");
+			ft_putstr(NRML);
 			return (EXIT_FAILURE);
 		}
 		pipex(&cmd, envp, argv);

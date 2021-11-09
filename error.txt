@@ -1,0 +1,4 @@
+//	bash: pipex_tester/assets/deepthought.txt: No such file or directory
+//	bash: pipex_tester/assets: No such file or directory
+//	bash: pipex-tester/outs/: Is a directory
+//	bash: noteexisting: command not found

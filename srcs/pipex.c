@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:36:37 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/09 00:11:32 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/09 04:15:13 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,5 @@ void	pipex(t_cmd *cmd, const char **envp, const char **argv)
 	i = -1;
 	while (cmd->cmds[i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
-	system("leaks pipex");
 	exit(EXIT_SUCCESS);
 }

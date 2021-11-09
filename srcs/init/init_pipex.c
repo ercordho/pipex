@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:01:52 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/08 23:33:38 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/09 04:12:42 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ static void	init_pipex_paths(t_cmd *cmd, int i)
 		if (cmd->cmds_paths[i] == NULL)
 			error_malloc_paths(cmd, i);
 		cmd->tmp = (const char *)(ft_strrchr(cmd->cmds[i][0], (int) '/') + 1);
-		if (cmd->tmp == NULL)
-			error_malloc_paths(cmd, i);
 		ft_memdel((void **)&cmd->cmds[i][0]);
 		cmd->cmds[i][0] = (const char *)ft_strdup(cmd->tmp);
-		ft_memdel((void **)&cmd->tmp);
+		if (cmd->cmds[i][0] == NULL)
+			error_malloc_paths(cmd, i);
 		return ;
 	}
 	j = -1;
@@ -63,7 +62,7 @@ static void	init_pipex_paths(t_cmd *cmd, int i)
 		if (access(cmd->cmds_paths[i], F_OK) == 0)
 			return ;
 		ft_memdel((void **)&cmd->cmds_paths[i]);
-	}
+	}	
 }
 
 void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)
@@ -75,10 +74,4 @@ void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)
 	while (++i < 2)
 		init_pipex_paths(cmd, i);
 	ft_memdels((void **)&cmd->paths, (void **)cmd->paths);
-	i = -1;
-	while (cmd->cmds[++i])
-	{
-		printf("cmd->cmds[%i][0] = %s\n", i, cmd->cmds[i][0]);
-		printf("cmd->cmds[%i][1] = %s\n", i, cmd->cmds[i][1]);
-	}
 }

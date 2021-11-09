@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:36:37 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/09 04:15:13 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/09 04:26:41 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	pipex(t_cmd *cmd, const char **envp, const char **argv)
 		child_process_2(cmd, argv, envp);
 	waitpid(-1, NULL, 0);
 	i = -1;
-	while (cmd->cmds[i])
+	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
 	exit(EXIT_SUCCESS);
 }

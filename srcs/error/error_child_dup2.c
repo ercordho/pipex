@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:38:46 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/09 04:23:05 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/09 04:27:01 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	error_child_dup2(t_cmd *cmd, int process_index)
 	int	i;
 
 	i = -1;
-	while (cmd->cmds[i])
+	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
 	ft_putstr(RED);
 	if (process_index == 11)

@@ -2,7 +2,6 @@
 	"files.associations": {
 		"*.c": "c",
 		"*.json": "c",
-		"pipex.h": "c",
-		"libft.h": "c"
+		"pipex.h": "c"
 	}
 }

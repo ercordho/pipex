@@ -6,25 +6,24 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:47:02 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/09 04:27:07 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:18:53 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/pipex.h"
 
-void	error_child_fork(t_cmd *cmd, int child_index)
+void	error_child_fork(t_cmd *cmd, const char *str)
 {
 	int	i;
 
 	i = -1;
 	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
-	ft_putstr(RED);
 	ft_memdels((void **)&cmd->cmds_paths, (void **)cmd->cmds_paths);
-	if (child_index == 1)
-		ft_putendl("ERROR\nChild 1 fork failled.");
-	else if (child_index == 2)
-		ft_putendl("ERROR\nChild 2 fork failled.");
+	ft_putstr(RED);
+	ft_putendl("ERROR");
+	ft_putstr(str);
+	ft_putendl(" failled.");
 	ft_putstr(NRML);
 	exit(EXIT_FAILURE);
 }

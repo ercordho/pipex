@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_child_dup2.c                                 :+:      :+:    :+:   */
+/*   error_waitpid.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/08 22:38:46 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/16 17:10:22 by ercordho         ###   ########.fr       */
+/*   Created: 2021/11/16 17:04:12 by ercordho          #+#    #+#             */
+/*   Updated: 2021/11/16 17:23:16 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
 
-void	error_child_dup2(t_cmd *cmd, const char *str)
+void	error_waitpid(const char **cmds[3])
 {
 	int	i;
 
 	i = -1;
-	while (cmd->cmds[++i])
-		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
+	while (cmds[++i])
+		ft_memdels((void **)&cmds[i], (void **)cmds[i]);
 	ft_putstr(RED);
-	ft_putendl("ERROR:");
-	ft_putstr(str);
-	ft_putendl(" failled.");
+	ft_putendl("ERROR\nWaitpid failure.");
+	ft_putchar('.');
 	ft_putstr(NRML);
 	exit(EXIT_FAILURE);
 }

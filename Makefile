@@ -6,7 +6,7 @@
 #    By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 18:47:17 by ercordho          #+#    #+#              #
-#    Updated: 2021/11/08 22:53:00 by ercordho         ###   ########.fr        #
+#    Updated: 2021/11/16 17:35:50 by ercordho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,12 +17,15 @@ CFLAGS	=	-Wall -Wextra -Werror
 RM		=	rm -f
 SRCS	=	srcs/ascii/ft_ischarset.c \
 			\
+			srcs/error/error_access.c \
 			srcs/error/error_child_dup2.c \
 			srcs/error/error_child_fork.c \
 			srcs/error/error_init_cmd.c \
 			srcs/error/error_init_paths.c \
 			srcs/error/error_malloc_paths.c \
 			srcs/error/error_open_file.c \
+			srcs/error/error_pipe.c \
+			srcs/error/error_waitpid.c \
 			\
 			srcs/init/init_pipex.c \
 			\
@@ -54,7 +57,7 @@ $(AR):		$(OBJS)
 $(NAME):	$(OBJS) $(AR)
 all:		$(NAME)
 .c.o:		$(SRCS) $(AR)
-			@$(CC) $(CFLAGS) -I $(INC) -c $< -o $(<:.c=.o)
+			@$(CC) $(CFLAGS) -I $(INC) -c $< -o $(<:.c=.o) -fsanitize=address
 clean:
 			@$(RM) $(OBJS) $(AR)
 fclean:		clean

@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:49:01 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/08 16:52:18 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:24:31 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_memdel(void **ptr)
 {
-	if (ptr || *ptr)
+	if (ptr && *ptr)
 	{
 		free(*ptr);
 		*ptr = NULL;

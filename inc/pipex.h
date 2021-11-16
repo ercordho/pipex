@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:07:56 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/09 00:03:26 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:18:19 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ int			ft_ischarset(const char *set, char c);
 /*
 **	ERROR
 */
-void		error_child_dup2(t_cmd *cmd, int process_index);
-void		error_child_fork(t_cmd *cmd, int child_index);
+void		error_access(const char *str);
+void		error_child_dup2(t_cmd *cmd, const char *str);
+void		error_child_fork(t_cmd *cmd, const char *str);
 void		error_init_cmd(t_cmd *cmd, int index);
 void		error_init_paths(void);
 void		error_malloc_paths(t_cmd *cmd, int i);
 void		error_open_file(t_cmd *cmd, int file_index);
+void		error_pipe(void);
+void		error_waitpid(const char **cmds[3]);
 
 /*
 **	INIT

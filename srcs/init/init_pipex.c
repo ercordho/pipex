@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:01:52 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/09 04:12:42 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/16 16:45:49 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	init_pipex_paths(t_cmd *cmd, int i)
 		cmd->cmds_paths[i] = (const char *)ft_strdup(cmd->cmds[i][0]);
 		if (cmd->cmds_paths[i] == NULL)
 			error_malloc_paths(cmd, i);
-		cmd->tmp = (const char *)(ft_strrchr(cmd->cmds[i][0], (int) '/') + 1);
+		cmd->tmp = (const char *)ft_strrchr(cmd->cmds[i][0], (int) '/') + 1;
 		ft_memdel((void **)&cmd->cmds[i][0]);
 		cmd->cmds[i][0] = (const char *)ft_strdup(cmd->tmp);
 		if (cmd->cmds[i][0] == NULL)

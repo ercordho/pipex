@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:36:37 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/09 04:26:41 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/16 17:18:03 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ static void	child_process_1(t_cmd *cmd, const char **argv, const char **envp)
 
 	close(cmd->end[0]);
 	if (dup2(cmd->end[1], STDOUT_FILENO) < 0)
-		error_child_dup2(cmd, 11);
+		error_child_dup2(cmd, "Child 1 dup2 STDOUT_FILENO");
 	close(cmd->end[1]);
 	cmd->infile = open(argv[1], O_RDONLY);
 	if (cmd->infile == -1)
 		error_open_file(cmd, 1);
 	if (dup2(cmd->infile, STDIN_FILENO) < 0)
-		error_child_dup2(cmd, 12);
+		error_child_dup2(cmd, "Child 1 dup2 STDIN_FILENO");
 	f = &execve;
 	f(cmd->cmds_paths[0], (char *const *)cmd->cmds[0], (char *const *)envp);
 }
@@ -38,10 +38,10 @@ static void	child_process_2(t_cmd *cmd, const char **argv, const char **envp)
 		error_open_file(cmd, 2);
 	close(cmd->end[1]);
 	if (dup2(cmd->end[0], STDIN_FILENO) < 0)
-		error_child_dup2(cmd, 21);
+		error_child_dup2(cmd, "Child 2 dup2 STDOUT_FILENO");
 	close(cmd->end[0]);
 	if (dup2(cmd->outfile, STDOUT_FILENO) < 0)
-		error_child_dup2(cmd, 22);
+		error_child_dup2(cmd, "Child 2 dup2 STDIN_FILENO");
 	f = &execve;
 	f(cmd->cmds_paths[1], (char *const *)cmd->cmds[1], (char *const *)envp);
 }
@@ -55,15 +55,16 @@ void	pipex(t_cmd *cmd, const char **envp, const char **argv)
 	init_pipex(cmd, envp, argv);
 	child_1 = fork();
 	if (child_1 < 0)
-		error_child_fork(cmd, 1);
+		error_child_fork(cmd, "Child 1 fork ");
 	if (child_1 == 0)
 		child_process_1(cmd, argv, envp);
 	child_2 = fork();
 	if (child_2 < 0)
-		error_child_fork(cmd, 2);
+		error_child_fork(cmd, "Child 2 fork");
 	if (child_2 == 0)
 		child_process_2(cmd, argv, envp);
-	waitpid(-1, NULL, 0);
+	if (waitpid(-1, NULL, 0) == -1)
+		error_waitpid(cmd->cmds);
 	i = -1;
 	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);

@@ -6,7 +6,7 @@
 #    By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 18:47:17 by ercordho          #+#    #+#              #
-#    Updated: 2021/11/16 17:35:50 by ercordho         ###   ########.fr        #
+#    Updated: 2021/11/16 17:41:54 by ercordho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ $(AR):		$(OBJS)
 $(NAME):	$(OBJS) $(AR)
 all:		$(NAME)
 .c.o:		$(SRCS) $(AR)
-			@$(CC) $(CFLAGS) -I $(INC) -c $< -o $(<:.c=.o) -fsanitize=address
+			@$(CC) $(CFLAGS) -I $(INC) -c $< -o $(<:.c=.o)
 clean:
 			@$(RM) $(OBJS) $(AR)
 fclean:		clean

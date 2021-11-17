@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:38:46 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/16 17:10:22 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/17 18:09:45 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	error_child_dup2(t_cmd *cmd, const char *str)
 	i = -1;
 	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
+	close(cmd->end[0]);
+	close(cmd->end[1]);
+	close(cmd->infile);
+	close(cmd->outfile);
 	ft_putstr(RED);
 	ft_putendl("ERROR:");
 	ft_putstr(str);

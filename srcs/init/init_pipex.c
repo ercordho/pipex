@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:01:52 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/16 16:45:49 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/17 18:07:08 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,12 @@ void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)
 	while (++i < 2)
 		init_pipex_paths(cmd, i);
 	ft_memdels((void **)&cmd->paths, (void **)cmd->paths);
+	if (pipe(cmd->end) == -1)
+		error_pipe();
+	cmd->infile = open(argv[1], O_RDONLY);
+	if (cmd->infile == -1)
+		error_open_file(cmd, 1);
+	cmd->outfile = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (cmd->outfile == -1)
+		error_open_file(cmd, 2);
 }

@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:01:52 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/17 18:07:08 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/19 14:07:51 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,18 @@ static void	init_pipex_cmds(t_cmd *cmd, const char **envp, const char **argv)
 	cmd->cmds_paths[2] = NULL;
 }
 
-static void	init_pipex_paths(t_cmd *cmd, int i)
+static void	init_pipex_paths(t_cmd *cmd, int i, int j)
 {
-	int			j;
-
 	if (access(cmd->cmds[i][0], F_OK) == 0)
 	{
 		cmd->cmds_paths[i] = (const char *)ft_strdup(cmd->cmds[i][0]);
 		if (cmd->cmds_paths[i] == NULL)
 			error_malloc_paths(cmd, i);
 		cmd->tmp = (const char *)ft_strrchr(cmd->cmds[i][0], (int) '/') + 1;
+		cmd->tmp = (const char *)ft_strdup(cmd->tmp);
 		ft_memdel((void **)&cmd->cmds[i][0]);
 		cmd->cmds[i][0] = (const char *)ft_strdup(cmd->tmp);
+		ft_memdel((void **)&cmd->tmp);
 		if (cmd->cmds[i][0] == NULL)
 			error_malloc_paths(cmd, i);
 		return ;
@@ -72,7 +72,7 @@ void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)
 	init_pipex_cmds(cmd, envp, argv);
 	i = -1;
 	while (++i < 2)
-		init_pipex_paths(cmd, i);
+		init_pipex_paths(cmd, i, -1);
 	ft_memdels((void **)&cmd->paths, (void **)cmd->paths);
 	if (pipe(cmd->end) == -1)
 		error_pipe();

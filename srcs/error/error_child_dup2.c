@@ -6,13 +6,13 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:38:46 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/17 18:09:45 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/18 18:53:07 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
 
-void	error_child_dup2(t_cmd *cmd, const char *str)
+void	error_child_dup2(t_cmd *cmd)
 {
 	int	i;
 
@@ -23,10 +23,5 @@ void	error_child_dup2(t_cmd *cmd, const char *str)
 	close(cmd->end[1]);
 	close(cmd->infile);
 	close(cmd->outfile);
-	ft_putstr(RED);
-	ft_putendl("ERROR:");
-	ft_putstr(str);
-	ft_putendl(" failled.");
-	ft_putstr(NRML);
 	exit(EXIT_FAILURE);
 }

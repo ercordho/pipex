@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_waitpid.c                                    :+:      :+:    :+:   */
+/*   error_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/16 17:04:12 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/18 19:20:34 by ercordho         ###   ########.fr       */
+/*   Created: 2021/11/18 16:56:38 by ercordho          #+#    #+#             */
+/*   Updated: 2021/11/18 18:53:53 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
 
-void	error_waitpid(t_cmd *cmd)
+void	error_cmd(t_cmd *cmd)
 {
-	int	i;
+	int	j;
 
-	i = -1;
-	while (cmd->cmds[++i])
-		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
-	close(cmd->end[0]);
-	close(cmd->end[1]);
+	j = -1;
+	while (cmd->cmds[++j])
+		ft_memdels((void **)&cmd->cmds[j], (void **)cmd->cmds);
+	ft_putstr(RED);
+	ft_putendl("ERROR\nCommand not found.");
+	ft_putstr(NRML);
 	exit(EXIT_FAILURE);
 }

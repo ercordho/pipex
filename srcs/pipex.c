@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:36:37 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/17 18:12:05 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/18 18:53:35 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static void	child_process_1(t_cmd *cmd, const char **envp)
 
 	close(cmd->end[0]);
 	if (dup2(cmd->end[1], STDOUT_FILENO) < 0)
-		error_child_dup2(cmd, "Child 1 dup2 STDOUT_FILENO");
+		error_child_dup2(cmd);
 	close(cmd->end[1]);
 	if (dup2(cmd->infile, STDIN_FILENO) < 0)
-		error_child_dup2(cmd, "Child 1 dup2 STDIN_FILENO");
+		error_child_dup2(cmd);
 	close(cmd->infile);
 	f = &execve;
 	f(cmd->cmds_paths[0], (char *const *)cmd->cmds[0], (char *const *)envp);
@@ -44,10 +44,10 @@ static void	child_process_2(t_cmd *cmd, const char **envp)
 
 	close(cmd->end[1]);
 	if (dup2(cmd->end[0], STDIN_FILENO) < 0)
-		error_child_dup2(cmd, "Child 2 dup2 STDOUT_FILENO");
+		error_child_dup2(cmd);
 	close(cmd->end[0]);
 	if (dup2(cmd->outfile, STDOUT_FILENO) < 0)
-		error_child_dup2(cmd, "Child 2 dup2 STDIN_FILENO");
+		error_child_dup2(cmd);
 	close(cmd->outfile);
 	f = &execve;
 	f(cmd->cmds_paths[1], (char *const *)cmd->cmds[1], (char *const *)envp);
@@ -59,7 +59,7 @@ void	pipex(t_cmd *cmd, const char **envp, const char **argv)
 	pid_t	child_2;
 
 	if (access(argv[1], F_OK) != 0)
-		error_access(argv[1]);
+		error_access();
 	init_pipex(cmd, envp, argv);
 	child_1 = fork();
 	if (child_1 < 0)

@@ -6,7 +6,7 @@
 #    By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 18:47:17 by ercordho          #+#    #+#              #
-#    Updated: 2021/11/17 16:20:12 by ercordho         ###   ########.fr        #
+#    Updated: 2021/11/18 18:57:13 by ercordho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS			=	srcs/ascii/ft_ischarset.c \
 					srcs/error/error_access.c \
 					srcs/error/error_child_dup2.c \
 					srcs/error/error_child_fork.c \
+					srcs/error/error_cmd.c \
 					srcs/error/error_init_cmd.c \
 					srcs/error/error_init_paths.c \
 					srcs/error/error_malloc_paths.c \
@@ -51,7 +52,7 @@ OBJS			=	$(SRCS:.c=.o)
 OS				:=	$(shell uname -s)
 
 ifeq ($(OS),Darwin)
- 	CFLAGS		+=	-fsanitize=address
+ 	#CFLAGS		+=	-fsanitize=address
 endif
 
 $(NAME) 		: 	$(OBJS)

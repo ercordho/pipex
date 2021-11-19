@@ -6,18 +6,13 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 16:30:02 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/17 18:04:36 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/18 18:52:34 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
 
-void	error_access(const char *str)
+void	error_access(void)
 {
-	ft_putstr(RED);
-	ft_putstr("ERROR\nIncomplete user permission for ");
-	ft_putstr(str);
-	ft_putendl(".");
-	ft_putstr(NRML);
 	exit(EXIT_FAILURE);
 }

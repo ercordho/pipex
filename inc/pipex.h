@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:07:56 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/18 18:54:02 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/11/23 15:15:07 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <sys/wait.h>
 
 # define RED	"\x1B[31m"
 # define NRML	"\x1B[0m"

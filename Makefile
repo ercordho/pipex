@@ -6,7 +6,7 @@
 #    By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 18:47:17 by ercordho          #+#    #+#              #
-#    Updated: 2021/11/18 18:57:13 by ercordho         ###   ########.fr        #
+#    Updated: 2021/11/23 14:57:02 by ercordho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,20 +49,15 @@ SRCS			=	srcs/ascii/ft_ischarset.c \
 				\
 					main.c
 OBJS			=	$(SRCS:.c=.o)
-OS				:=	$(shell uname -s)
-
-ifeq ($(OS),Darwin)
- 	#CFLAGS		+=	-fsanitize=address
-endif
 
 $(NAME) 		: 	$(OBJS)
-					@$(CC) $(CFLAGS) -o $@ $^
+					$(CC) $(CFLAGS) -o $@ $^
 all				:	$(NAME)
 %.o				:	%.c %.h
-					@$(CC) $(CFLAGS) -c $<
+					$(CC) $(CFLAGS) -c $<
 clean			:
-					@$(RM) $(OBJS)
+					$(RM) $(OBJS)
 fclean			:	clean
-					@$(RM) $(NAME)
+					$(RM) $(NAME)
 re				:	fclean all
 .PHONY			:	all clean fclean re pipex

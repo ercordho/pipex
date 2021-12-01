@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:48:29 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/08 16:48:48 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/02 00:16:25 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static size_t	get_word_len(const char *str, const char *set)
 	size_t	len;
 	int		i;
 
-	if (str == NULL || set == NULL)
+	if (str == (void *)0 || set == (void *)0)
 		return (0);
 	len = 0;
 	i = 0;
@@ -46,7 +46,7 @@ static char	*split_copy_word(const char *str, const char *set)
 		return (NULL);
 	n_str = (char *)malloc(sizeof(char ) * (len + 1));
 	n_str = (char *)ft_memset((void *)n_str, '\0', len + 1);
-	if (n_str == NULL)
+	if (n_str == (void *)0)
 		return (NULL);
 	i = 0;
 	while (*str && ft_ischarset(set, *str) == -1)
@@ -64,7 +64,7 @@ char	**ft_split(const char *str, const char *set)
 	if (count_words == 0)
 		return (NULL);
 	strs = (char **)malloc(sizeof(char *) * (count_words + 1));
-	if (strs == NULL)
+	if (strs == (void *)0)
 		return (NULL);
 	y = 0;
 	while (*str)
@@ -74,7 +74,7 @@ char	**ft_split(const char *str, const char *set)
 		if (*str && ft_ischarset(set, *str) == -1)
 		{
 			strs[y] = split_copy_word(str, set);
-			if (strs[y] == NULL)
+			if (strs[y] == (void *)0)
 				return (clean_memory((void *)strs));
 			str += ft_strlen(strs[y++]);
 		}

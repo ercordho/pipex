@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:51:17 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/08 16:51:36 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/02 00:16:25 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	countwords(const char *str, const char *set)
 	int	count;
 	int	ret;
 
-	if (str == NULL || set == NULL)
+	if (str == (void *)0 || set == (void *)0)
 		return (0);
 	count = 0;
 	ret = 0;

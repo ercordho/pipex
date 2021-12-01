@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:50:10 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/08 17:52:36 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/02 00:16:25 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strrchr(const char *str, int c)
 {
 	size_t	len;
 
-	if (str == NULL)
+	if (str == (void *)0)
 		return (NULL);
 	len = ft_strlen(str);
 	while (--len > 0)

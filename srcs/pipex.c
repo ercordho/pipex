@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:36:37 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/18 18:53:35 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/06 15:39:39 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,26 @@ static void	clean_memory(t_cmd *cmd)
 	i = -1;
 	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
-	close(cmd->end[0]);
-	close(cmd->end[1]);
+	if (close(cmd->end[0]) == -1)
+		error_close_file(cmd, "end[0]", 1);
+	if (close(cmd->end[1]) == -1)
+		error_close_file(cmd, "end[1]", 1);
 }
 
 static void	child_process_1(t_cmd *cmd, const char **envp)
 {
 	int	(*f)(const char *, char *const *, char *const *);
 
-	close(cmd->end[0]);
+	if (close(cmd->end[0]) == -1)
+		error_close_file(cmd, "end[0]", 1);
 	if (dup2(cmd->end[1], STDOUT_FILENO) < 0)
 		error_child_dup2(cmd);
-	close(cmd->end[1]);
+	if (close(cmd->end[1]) == -1)
+		error_close_file(cmd, "end[1]", 1);
 	if (dup2(cmd->infile, STDIN_FILENO) < 0)
 		error_child_dup2(cmd);
-	close(cmd->infile);
+	if (close(cmd->infile) == -1)
+		error_close_file(cmd, "infile", 1);
 	f = &execve;
 	f(cmd->cmds_paths[0], (char *const *)cmd->cmds[0], (char *const *)envp);
 }
@@ -42,13 +47,16 @@ static void	child_process_2(t_cmd *cmd, const char **envp)
 {
 	int	(*f)(const char *, char *const *, char *const *);
 
-	close(cmd->end[1]);
+	if (close(cmd->end[1]) == -1)
+		error_close_file(cmd, "end[1]", 1);
 	if (dup2(cmd->end[0], STDIN_FILENO) < 0)
 		error_child_dup2(cmd);
-	close(cmd->end[0]);
+	if (close(cmd->end[0]) == -1)
+		error_close_file(cmd, "end[0]", 1);
 	if (dup2(cmd->outfile, STDOUT_FILENO) < 0)
 		error_child_dup2(cmd);
-	close(cmd->outfile);
+	if (close(cmd->outfile) == -1)
+		error_close_file(cmd, "outfile", 1);
 	f = &execve;
 	f(cmd->cmds_paths[1], (char *const *)cmd->cmds[1], (char *const *)envp);
 }

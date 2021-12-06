@@ -6,7 +6,7 @@
 #    By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 18:47:17 by ercordho          #+#    #+#              #
-#    Updated: 2021/12/02 00:17:48 by ercordho         ###   ########.fr        #
+#    Updated: 2021/12/06 15:34:58 by ercordho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS			=	srcs/ascii/ft_ischarset.c \
 					srcs/error/error_access.c \
 					srcs/error/error_child_dup2.c \
 					srcs/error/error_child_fork.c \
+					srcs/error/error_close_file.c \
 					srcs/error/error_cmd.c \
 					srcs/error/error_init_cmd.c \
 					srcs/error/error_init_paths.c \

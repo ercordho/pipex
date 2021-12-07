@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:01:52 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/02 00:16:25 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/07 17:21:35 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	init_pipex_cmds(t_cmd *cmd, const char **envp, const char **argv)
 	{
 		if (ft_strncmp("PATH=", envp[i], 5) == 0)
 		{
-			cmd->paths = (const char **)ft_split(envp[i], ":");
+			cmd->paths = (const char **)ft_split(envp[i] + 5, ":");
 			if (cmd->paths == (void *)0)
 				error_init_paths();
 			break ;
@@ -62,7 +62,8 @@ static void	init_pipex_paths(t_cmd *cmd, int i, int j)
 		if (access(cmd->cmds_paths[i], F_OK) == 0)
 			return ;
 		ft_memdel((void **)&cmd->cmds_paths[i]);
-	}	
+	}
+	error_cmd(cmd->cmds[i][0]);
 }
 
 void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)

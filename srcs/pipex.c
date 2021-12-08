@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:36:37 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/07 15:33:04 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:23:13 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	clean_memory(t_cmd *cmd)
 	i = -1;
 	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
+	ft_memdel((void **)&cmd->cmds_paths[0]);
+	ft_memdel((void **)&cmd->cmds_paths[1]);
 	if (close(cmd->end[0]) == -1)
 		error_close_file(cmd, 1);
 	if (close(cmd->end[1]) == -1)

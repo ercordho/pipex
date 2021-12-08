@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:07:56 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/08 17:14:20 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:25:05 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void		error_access(void);
 void		error_child_dup2(t_cmd *cmd);
 void		error_child_fork(t_cmd *cmd, const char *str);
 void		error_close_file(t_cmd *cmd, int index);
-void		error_cmd(const char *cmd);
+void		error_cmd(t_cmd *cmd, const char *command);
 void		error_init_cmd(t_cmd *cmd, int index);
 void		error_init_paths(void);
-void		error_malloc_paths(t_cmd *cmd, int i);
+void		error_malloc_paths(t_cmd *cmd);
 void		error_open_file(t_cmd *cmd, int file_index);
 void		error_pipe(void);
 void		error_waitpid(t_cmd *cmd);

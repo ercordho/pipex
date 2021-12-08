@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:07:56 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/07 17:21:09 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/08 17:14:20 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+
+# ifndef __APPLE__
+#  define __APPLE__ 0
+# endif
 
 # define RED	"\x1B[31m"
 # define NRML	"\x1B[0m"

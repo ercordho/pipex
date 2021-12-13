@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 18:07:46 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/08 17:17:47 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:22:18 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,13 @@
 
 void	error_malloc_paths(t_cmd *cmd)
 {
-	ft_memdels((void **)&cmd->cmds_paths, (void **)cmd->cmds_paths);
+	int	i;
+
+	i = -1;
+	while (cmd->cmds[++i])
+		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
 	ft_memdels((void **)&cmd->paths, (void **)cmd->paths);
+	ft_memdels((void **)&cmd->cmds_paths, (void **)cmd->cmds_paths);
 	ft_putstr(RED);
 	ft_putendl("ERROR\nError malloc paths");
 	ft_putstr(NRML);

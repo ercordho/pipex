@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 16:56:38 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/08 17:32:57 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/13 18:32:47 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	error_cmd(t_cmd *cmd, const char *command)
 {
 	int	i;
 
+	(void)command;
 	ft_putstr(RED);
 	ft_putstr("ERROR\npipex: ");
 	ft_putstr(command);

@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:47:02 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/06 15:57:55 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/13 17:45:40 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@ void	error_child_fork(t_cmd *cmd, const char *str)
 	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);
 	ft_memdels((void **)&cmd->cmds_paths, (void **)cmd->cmds_paths);
-	if (close(cmd->end[0]) == -1)
-		error_close_file(cmd, 1);
-	if (close(cmd->end[1]) == -1)
-		error_close_file(cmd, 1);
-	if (close(cmd->infile) == -1)
-		error_close_file(cmd, 1);
-	if (close(cmd->outfile) == -1)
-		error_close_file(cmd, 1);
+	cmd->end[0] = close(cmd->end[0]);
+	cmd->end[1] = close(cmd->end[1]);
+	cmd->infile = close(cmd->infile);
+	cmd->outfile = close(cmd->outfile);
+	if (cmd->end[0] != 0)
+		error_close_file(NULL, "cmd->end[0]");
+	if (cmd->end[1] != 0)
+		error_close_file(NULL, "cmd->end[1]");
+	if (cmd->infile != 0)
+		error_close_file(NULL, "cmd->infile");
+	if (cmd->outfile != 0)
+		error_close_file(NULL, "cmd->outfile");
 	ft_putstr(RED);
 	ft_putendl("ERROR");
 	ft_putstr(str);

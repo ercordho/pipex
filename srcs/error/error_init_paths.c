@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:07:30 by ercordho          #+#    #+#             */
-/*   Updated: 2021/11/09 03:51:32 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/13 16:09:08 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	error_init_paths(void)
 {
 	ft_putstr(RED);
-	ft_putendl("ERROR\nError when initialising Paths.");
+	ft_putendl("ERROR\nError when initialising paths.");
 	ft_putstr(NRML);
 	exit(EXIT_FAILURE);
 }

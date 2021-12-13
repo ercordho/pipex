@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:01:52 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/08 17:27:20 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/13 18:22:49 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static void	init_pipex_cmds(t_cmd *cmd, const char **envp, const char **argv)
 	if (cmd->cmds[1] == (void *)0)
 		error_init_cmd(cmd, 2);
 	cmd->cmds[2] = NULL;
-	cmd->cmds_paths[0] = NULL;
-	cmd->cmds_paths[1] = NULL;
-	cmd->cmds_paths[2] = NULL;
+	i = -1;
+	while (++i < 3)
+		cmd->cmds_paths[i] = NULL;
 }
 
 static void	init_pipex_paths(t_cmd *cmd, int i, int j)
@@ -78,7 +78,7 @@ void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)
 		init_pipex_paths(cmd, i, -1);
 	ft_memdels((void **)&cmd->paths, (void **)cmd->paths);
 	if (pipe(cmd->end) == -1)
-		error_pipe();
+		error_pipe(cmd);
 	cmd->infile = open(argv[1], O_RDONLY);
 	if (cmd->infile == -1)
 		error_open_file(cmd, 1);

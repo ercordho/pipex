@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:38:46 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/15 00:20:04 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/15 00:27:20 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ static void	clean_memory(t_cmd *cmd)
 
 void	error_child_dup2(t_cmd *cmd)
 {
-	ft_putstr(RED);
-	ft_putendl("ERROR\nError during dup2.");
-	ft_putstr(NRML);
 	clean_memory(cmd);
 	if (cmd->end[0] != 0)
 		cmd->end[0] = close(cmd->end[0]);

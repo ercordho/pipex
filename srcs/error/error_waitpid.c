@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 17:04:12 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/13 16:58:01 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/15 00:17:50 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ void	error_waitpid(t_cmd *cmd)
 {
 	int	i;
 
+	ft_putstr(RED);
+	ft_putendl("ERROR\nError during the waitpid call.");
+	ft_putstr(NRML);
 	i = -1;
 	while (cmd->cmds[++i])
 		ft_memdels((void **)&cmd->cmds[i], (void **)cmd->cmds[i]);

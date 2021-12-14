@@ -6,11 +6,19 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:01:52 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/13 18:22:49 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/15 00:04:48 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/pipex.h"
+
+static void	init_file_descriptor(t_cmd *cmd)
+{
+	cmd->end[0] = 0;
+	cmd->end[1] = 0;
+	cmd->infile = 0;
+	cmd->outfile = 0;
+}
 
 static void	init_pipex_cmds(t_cmd *cmd, const char **envp, const char **argv)
 {
@@ -65,13 +73,14 @@ static void	init_pipex_paths(t_cmd *cmd, int i, int j)
 			return ;
 		ft_memdel((void **)&cmd->cmds_paths[i]);
 	}
-	error_cmd(cmd, cmd->cmds[i][0]);
+	cmd->cmds_paths[i] = NULL;
 }
 
 void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)
 {
 	int	i;
 
+	init_file_descriptor(cmd);
 	init_pipex_cmds(cmd, envp, argv);
 	i = -1;
 	while (++i < 2)
@@ -79,9 +88,14 @@ void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)
 	ft_memdels((void **)&cmd->paths, (void **)cmd->paths);
 	if (pipe(cmd->end) == -1)
 		error_pipe(cmd);
-	cmd->infile = open(argv[1], O_RDONLY);
-	if (cmd->infile == -1)
-		error_open_file(cmd, 1);
+	if (cmd->cmds_paths[0] == (void *)0)
+		cmd->infile = -1;
+	else
+	{
+		cmd->infile = open(argv[1], O_RDONLY);
+		if (cmd->infile == -1)
+			error_open_file(cmd, 1);
+	}
 	cmd->outfile = open(argv[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (cmd->outfile == -1)
 		error_open_file(cmd, 2);

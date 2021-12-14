@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:07:56 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/13 17:43:52 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/15 00:20:45 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int			ft_ischarset(const char *set, char c);
 /*
 **	ERROR
 */
-void		error_access(void);
+void		error_access(const char *file_name);
 void		error_child_dup2(t_cmd *cmd);
 void		error_child_fork(t_cmd *cmd, const char *str);
 void		error_close_file(t_cmd *cmd, const char *file_name);

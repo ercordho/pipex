@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 17:20:27 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/07 15:31:54 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/14 20:55:01 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	error_init_cmd(t_cmd *cmd, int index)
 {
 	ft_memdels((void **)&cmd->paths, (void **)cmd->paths);
 	ft_putstr(RED);
-	if (index == 1)
+	if (index == -1)
 		ft_putendl("ERROR\nError when initialising Command 1.");
 	else if (index == 2)
 	{

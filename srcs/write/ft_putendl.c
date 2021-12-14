@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:33:29 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/02 00:17:10 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/14 23:52:10 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_putendl(const char *str)
 	{
 		if (__APPLE__)
 			return (ft_putendl("(null)"));
-		return (ft_putendl("(nill)"));
+		return (ft_putendl("(nil)"));
 	}
 	return (ft_putstr(str) + ft_putchar('\n'));
 }

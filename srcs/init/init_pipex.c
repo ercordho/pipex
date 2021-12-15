@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:01:52 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/15 00:39:53 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:09:24 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	init_pipex_paths(t_cmd *cmd, int i, int j)
 			return ;
 		ft_memdel((void **)&cmd->cmds_paths[i]);
 	}
-	cmd->cmds_paths[i] = NULL;
+	ft_memdel((void **)&cmd->cmds_paths[i]);
 }
 
 void	init_pipex(t_cmd *cmd, const char **envp, const char **argv)

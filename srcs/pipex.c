@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 16:36:37 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/15 00:40:04 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/15 16:14:59 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static void	child_process_1(t_cmd *cmd, const char **envp)
 	if (cmd->infile == -1)
 		error_close_file(cmd, "cmd->infile 1");
 	f = &execve;
-	f(cmd->cmds_paths[0], (char *const *)cmd->cmds[0], (char *const *)envp);
+	if (cmd->cmds_paths[0])
+		f(cmd->cmds_paths[0], (char *const *)cmd->cmds[0], (char *const *)envp);
 }
 
 static void	child_process_2(t_cmd *cmd, const char **envp)
@@ -75,7 +76,8 @@ static void	child_process_2(t_cmd *cmd, const char **envp)
 	if (cmd->outfile == -1)
 		error_close_file(cmd, "cmd->outfile");
 	f = &execve;
-	f(cmd->cmds_paths[1], (char *const *)cmd->cmds[1], (char *const *)envp);
+	if (cmd->cmds_paths[1])
+		f(cmd->cmds_paths[1], (char *const *)cmd->cmds[1], (char *const *)envp);
 }
 
 void	pipex(t_cmd *cmd, const char **envp, const char **argv)

@@ -6,7 +6,7 @@
 /*   By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 22:36:15 by ercordho          #+#    #+#             */
-/*   Updated: 2021/12/15 17:07:33 by ercordho         ###   ########.fr       */
+/*   Updated: 2021/12/18 01:34:08 by ercordho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	error_open_file(t_cmd *cmd, int file_index)
 {
 	clean_memory(cmd);
 	ft_putstr(RED);
-	if (file_index == -1)
+	if (file_index == 1)
 		ft_putendl("ERROR\nOpening file 1 failed.");
 	else if (file_index == 2)
 	{

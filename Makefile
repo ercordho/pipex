@@ -6,7 +6,7 @@
 #    By: ercordho <ercordho@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/08 18:47:17 by ercordho          #+#    #+#              #
-#    Updated: 2021/12/14 23:41:06 by ercordho         ###   ########.fr        #
+#    Updated: 2021/12/18 01:28:41 by ercordho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,4 +61,4 @@ clean			:
 fclean			:	clean
 					@$(RM) $(NAME)
 re				:	fclean all
-.PHONY			:	all clean fclean re pipex
+.PHONY			:	all clean fclean re
